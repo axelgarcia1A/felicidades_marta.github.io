@@ -1,0 +1,383 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.space {
+  height: 15vh;
+}
+
+section {
+  position: relative;
+}
+body{
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+}
+
+button {
+  position: absolute;
+  top: -100px; /* Cambié el valor a -100px para que esté más arriba */
+  margin-inline: auto;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+  border: none;
+  height: 2rem;
+  width: 4rem;
+  font-size: 0;
+  border-radius: 4rem;
+  background: linear-gradient(135deg, #aa9af1, #7569af);
+  box-shadow: inset 0 2px 6px 2px rgba(0, 0, 0, 0.27);
+}
+
+button .radio {
+  background: linear-gradient(135deg, #aa9af1, #7569af);
+  border-radius: 3rem;
+  transition: transform 0.5s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.44);
+  z-index: 2;
+}
+
+button .radio,
+button .inline,
+button .grid {
+  content: "";
+  position: absolute;
+  height: 2.2rem;
+  width: 2.2rem;
+  top: -0.1rem;
+  left: -0.1rem;
+}
+
+button .radio .dot,
+button .inline .dot,
+button .grid .dot {
+  background: #666;
+}
+
+button .radio .dot-icon,
+button .inline .dot-icon,
+button .grid .dot-icon {
+  background: #efefef;
+}
+
+button .radio .dot,
+button .radio .dot-icon,
+button .inline .dot,
+button .inline .dot-icon,
+button .grid .dot,
+button .grid .dot-icon {
+  height: 5px;
+  width: 5px;
+  border-radius: 3px;
+  display: inline-block;
+  transition: transform 0.4s ease;
+  margin: calc(50% - 2.5px) -0.5px 0;
+}
+
+button .grid {
+  transform: translatex(90%);
+}
+
+button .grid .dot-icon:first-child {
+  transform: translatey(-60%) translatex(60%);
+}
+
+button .grid .dot-icon:nth-child(2) {
+  transform: translatey(60%) translatex(-20%);
+}
+
+button .grid .dot-icon:nth-child(3) {
+  transform: translatey(60%) translatex(20%);
+}
+
+button .grid .dot-icon:last-child {
+  transform: translatey(-60%) translatex(-60%);
+}
+
+button .button-icons {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+button.grid-view-on .radio {
+  transform: translatex(90%);
+}
+
+button.grid-view-on .radio .dot:first-child {
+  transform: translatey(-60%) translatex(60%);
+}
+
+button.grid-view-on .radio .dot:nth-child(2) {
+  transform: translatey(-60%) translatex(100%);
+}
+
+button.grid-view-on .radio .dot:nth-child(3) {
+  transform: translatey(60%) translatex(-100%);
+}
+
+button.grid-view-on .radio .dot:last-child {
+  transform: translatey(60%) translatex(-60%);
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  max-width: 720px;
+  margin-inline: auto;
+  grid-gap: 2rem;
+}
+
+.grid-wrapper.stack {
+  display: block;
+  max-width: 720px;
+}
+
+.grid-wrapper.stack .item-wrapper {
+  display: inline-block;
+  position: relative;
+  width: 12.5%;
+  margin-right: -7.333%;
+  z-index: 1;
+  border-radius: 100%;
+}
+
+.grid-wrapper.stack .item-wrapper .item {
+  margin: 0;
+  transition: box-shadow 0.2s ease;
+}
+
+.grid-wrapper.stack .item-wrapper .item:hover {
+  box-shadow: 0 7px 30px rgba(119, 6, 141, 0.9);
+}
+
+.grid-wrapper .item {
+  aspect-ratio: 1/1;
+  background: #aaa;
+  box-sizing: content-box;
+  position: relative;
+  border-radius: 100%;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.grid-wrapper .item.active-thumb {
+  z-index: 2;
+  transition: none !important;
+}
+
+.grid-wrapper .item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal {
+  cursor: zoom-out;
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(77, 70, 70, 0);
+  backdrop-filter: blur(0) grayscale(0);
+  pointer-events: none;
+  z-index: 3;
+  color: #eee;
+  text-align: center;
+}
+
+.modal.active {
+  display: grid;
+  opacity: 1;
+  pointer-events: all;
+  background: linear-gradient(135deg, #100e16, #4f4c5e);
+  backdrop-filter: blur(5px) grayscale(100%);
+  transition: background-color 0.2s ease-in, backdrop-filter 0.2s ease;
+}
+
+.modal .modal-image {
+  aspect-ratio: 16/9;
+  width: 90%;
+  max-width: 1260px;
+  background: #eee;
+  margin: 40px auto;
+  position: relative;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
+}
+
+.modal .modal-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.modal-info {
+  position: absolute; /* Lo posiciona de forma relativa a su contenedor padre */
+  bottom: 80px; /* Ajusta la distancia desde la parte inferior */
+  left: 50%; /* Lo centra horizontalmente */
+  transform: translateX(-50%); /* Centrado perfecto en el eje X */
+  color: #fff; /* Color del texto blanco */
+  font-size: 1rem; /* Ajuste de tamaño de fuente */
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+  padding: 10px 15px; /* Espacio interno */
+  border-radius: 5px; /* Bordes redondeados */
+  max-width: 80%; /* Ancho máximo */
+  text-align: center; /* Alinea el texto al centro */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para resaltar */
+}
+
+.modal-info:empty {
+  display: none; /* Se oculta si está vacío */
+}
+.modal-info p {
+  margin: 0; /* Elimina márgenes en los párrafos */
+  padding: 0; /* Elimina padding */
+}
+
+.modal .modal-image {
+  margin-bottom: 0; /* Asegura que la imagen no tenga margen inferior */
+}
+
+/* Contenedor del botón */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Si necesitas que ocupe toda la altura de la ventana puedes añadir esta propiedad */
+  height: 100vh;
+  gap: 6%;
+}
+
+/* Estilos del botón */
+.btn-13 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 80%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  padding: 1rem 5rem;
+  text-transform: uppercase;
+  text-align: center; /* Asegura que el texto esté centrado */
+  display: flex;
+  justify-content: center; /* Centra el texto horizontalmente */
+  align-items: center; /* Centra el texto verticalmente */
+  border-radius: 99rem;
+  border-width: 2px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #fff; /* Añadir un borde exterior */
+}
+
+.btn-13:disabled {
+  cursor: default;
+}
+
+.btn-13:-moz-focusring {
+  outline: auto;
+}
+
+.btn-13 svg {
+  display: block;
+  vertical-align: middle;
+}
+
+.btn-13 [hidden] {
+  display: none;
+}
+
+.btn-13 span {
+  mix-blend-mode: difference;
+  position: relative;
+  z-index: 1;
+}
+
+/* Estilos del enlace */
+.btn-13 .link {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit; /* Hereda el color del botón */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-13:after,
+.btn-13:before {
+  background: #fff;
+  -webkit-clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(var(--progress, 0%) / 2),
+    0 calc(var(--progress, 0%) / 2),
+    0 0,
+    0 calc(100% - var(--progress, 0%) / 2),
+    100% calc(100% - var(--progress, 0%) / 2),
+    100% 100%,
+    0 100%,
+    0 calc(100% - var(--progress, 0%) / 2)
+  );
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(var(--progress, 0%) / 2),
+    0 calc(var(--progress, 0%) / 2),
+    0 0,
+    0 calc(100% - var(--progress, 0%) / 2),
+    100% calc(100% - var(--progress, 0%) / 2),
+    100% 100%,
+    0 100%,
+    0 calc(100% - var(--progress, 0%) / 2)
+  );
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: translateX(calc(100% - var(--progress, 0%) / 1.99));
+  transition: transform 0.2s ease, -webkit-clip-path 0.2s ease;
+  transition: clip-path 0.2s ease, transform 0.2s ease;
+  transition: clip-path 0.2s ease, transform 0.2s ease,
+    -webkit-clip-path 0.2s ease;
+}
+
+.btn-13:after {
+  transform: translateX(calc(-100% + var(--progress, 0%) / 1.99));
+}
+
+.btn-13:hover {
+  --progress: 100%;
+}
+
+.botones{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}

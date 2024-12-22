@@ -1,0 +1,193 @@
+/* Estilo general */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+/* Contenedor de las tarjetas */
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    position: relative;
+    padding-top: 180px; /* Agrega un espacio extra en la parte superior para el título */
+    box-sizing: border-box;
+}
+
+/* Tarjetas */
+.card {
+    position: relative;
+    width: calc(33.33% - 20px); /* Tres tarjetas por fila */
+    height: 200px; /* Altura inicial */
+    background-color: #212121;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    opacity: 0; /* Para la animación de entrada */
+    transform: translateY(20px); /* Para la animación de entrada */
+    transition: opacity 1s ease, transform 1s ease; /* Transición para mostrar las tarjetas */
+}
+
+/* Al pasar el ratón, la tarjeta se expande dinámicamente */
+.card:hover {
+    height: auto; /* Expande la tarjeta dependiendo del contenido de face2 */
+    box-shadow: 0 0 20px #ff0080, 0 0 40px #ff0080, 0 0 60px #ff0080;
+}
+
+/* Face1: Título centrado y fijo, pero se mueve al hacer hover */
+.card .face1 {
+    position: absolute;
+    top: 20px; /* Espaciado desde la parte superior */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 1.5rem;
+    z-index: 1;
+    text-align: center;
+    transition: transform 0.4s ease, font-size 0.4s ease;
+}
+
+/* Face2: El contenido que aparece al hacer hover */
+.card .face2 {
+    display: none; /* Oculto por defecto */
+    text-align: center;
+    color: #fff;
+    margin-top: 60px; /* Espacio para que no se superponga al título */
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%; /* Hace que ocupe todo el ancho disponible */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Asegura que el texto y el botón se separen */
+    position: relative;
+}
+
+/* Efecto de escritura en el texto de face2 */
+.card .face2 p {
+    margin: 10px 0;
+    width: 0; /* Inicia con el ancho en 0 para el efecto de escritura */
+    overflow: hidden; /* Oculta el texto mientras se escribe */
+    display: inline-block;
+    animation: typing 1.3s steps(30) forwards, fadeIn 1s forwards; /* Efecto de escritura y fade */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    position: relative;
+    text-align: center; /* Para que el texto esté centrado */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding: 0 10px;
+    transition: background-color 0.3s ease; /* Añade un pequeño padding para no pegar el texto al borde */
+}
+
+.card .face2 a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff0080;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Asegura que el botón esté abajo */
+}
+
+.card .face2 a:hover {
+    background-color: #e60073; /* Color rosita más oscuro al pasar el ratón */
+}
+
+/* Animación de escritura */
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%; /* El texto se escribe de izquierda a derecha */
+    }
+}
+
+/* Animación para que el texto se desvanezca mientras se escribe */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Mostrar el contenido de face2 cuando se hace hover */
+.card:hover .face2 {
+    display: flex; /* Cambiado a flex para que los elementos se alineen correctamente */
+    opacity: 1; /* Hace visible el contenido */
+    transform: translateY(0); /* Hace que el contenido suba suavemente */
+}
+
+/* Hover: El título se mueve hacia arriba y cambia de tamaño */
+.card:hover .face1 {
+    font-size: 2rem; /* El título se agranda al hacer hover */
+    transform: translateX(-50%) translateY(-20px); /* Mueve ligeramente el título hacia arriba */
+}
+
+/* Clase visible: Los elementos aparecen gradualmente */
+.card.visible {
+    opacity: 1; /* Totalmente visible */
+    transform: translateY(0); /* Posición normal */
+}
+
+/* Responsive: Asegura que las tarjetas se ajusten en pantallas pequeñas */
+@media (max-width: 1024px) {
+    .card {
+        width: calc(50% - 20px); /* Dos tarjetas por fila */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Una tarjeta por fila */
+    }
+}
+
+/* Estilo para el título */
+.title-container {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top:80px;
+    z-index: 1000;
+    width: 100%;
+    padding: 0 20px; /* Asegura que el título no se superponga con los bordes */
+}
+
+.title-container h1 {
+    font-size: 3rem;
+    color: #9b4dff;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0; /* Quita el margen superior para que esté pegado al top */
+}
+
+
+
+.title{
+    font-size: 20px;
+    color: white;
+}
